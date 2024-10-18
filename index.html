@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía de Pasteles</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        
+
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #18151f;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 85%;
+            margin: 20px auto;
+            background-color: rgb(253, 246, 237);
+            padding: 20px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border: 5px solid #e23409;
+        }
+        h1 {
+            text-align: center;
+            color: #4e1101;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+        .section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .section:nth-child(odd) {
+            flex-direction: row-reverse;
+        }
+        .text {
+            width: 50%;
+            padding: 20px;
+        }
+        .image {
+            width: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .image img {
+            max-width: 90%;
+            border-radius: 50%;
+            border: 4px solid #fc951f;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        h2 {
+            color: #105f06;
+            font-size: 1.8em;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #0a0706;
+            line-height: 1.6;
+            font-size: 1.1em;
+        }
+        .footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ff9800;
+            color: white;
+            border-radius: 0 0 20px 20px;
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+        .buttons {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .buttons button {
+            padding: 10px 20px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .buttons .morada {
+            background-color: #8e44ad; /* Morado */
+        }
+        .buttons .celeste {
+            background-color: #3498db; /* Celeste */
+        }
+        .buttons .roja {
+            background-color: #e74c3c; /* Roja */
+        }
+        .buttons .verde {
+            background-color: #27ae60; /* Verde */
+        }
+        .buttons .ram {
+            background-color: #813d16; /* Ram Pequeño */
+        }
+
+        .buttons .verde-agua {
+            background-color: #1abc9c; /* Celeste agua */
+        }
+        
+        .buttons .rojo-agua {
+            background-color: #e74c3c; /* Rojo agua */
+        }
+
+        .buttons button:hover {
+            transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+        }
+        .buttons button:active {
+            transform: scale(0.95); /* Reducir tamaño al hacer clic */
+        }
+
+        .color-picker {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .image-selector {
+            text-align: center;
+            margin: 20px;
+        }
+
+        .mensaje {
+            text-align: center;
+            margin-top: 20px;
+            color: green;
+            font-weight: bold;
+            display: none;
+        }
+
+        .color-change {
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .color-change:hover {
+            transform: scale(1.05); /* Aumentar tamaño al pasar el mouse */
+        }
+        .color-change:active {
+            transform: scale(0.95); /* Reducir tamaño al hacer clic */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="buttons">
+        <button class="color-change morada" onclick="cambiarColores('#8e44ad', '#6a2c91')">Morada</button>
+        <button class="color-change celeste" onclick="cambiarColores('#3498db', '#1a6a99')">Celeste</button>
+        <button class="color-change roja" onclick="cambiarColores('#e74c3c', '#b02a2a')">Roja</button>
+        <button class="color-change verde" onclick="cambiarColores('#27ae60', '#1b6e4f')">Verde</button>
+        <button class="color-change ram" onclick="cambiarColores('#813d16', '#5c2b12')">Ram Pequeño</button>
+    
+    </div>
+
+    <div class="color-picker">
+        <label for="colorPicker">Elige el color del título (RGB):</label>
+        <input type="color" id="colorPicker" value="#813d16">
+        <button class="color-change" onclick="cambiarColorTitulo()">Cambiar Color</button>
+    </div>
+
+    <div class="color-picker">
+        <label for="bgColorPicker">Elige el color del fondo del contenedor (RGB):</label>
+        <input type="color" id="bgColorPicker" value="#fdf6ed">
+        <button class="color-change" onclick="cambiarFondoContenedor()">Cambiar Fondo</button>
+    </div>
+    <!-- Nuevo selector para cambiar color de subtítulos -->
+<div class="color-picker">
+    <label for="subtituloColorPicker">Elige el color de los subtítulos (RGB):</label>
+    <input type="color" id="subtituloColorPicker" value="#8dc34a">
+    <button class="color-change" onclick="cambiarColorSubtitulos()">Cambiar Color</button>
+</div>
+
+
+<div class="buttons">
+    
+    <button class="verde-agua" onclick="cambiarFormaImagen()">Cambiar Forma de Imagen</button> <!-- Botón para cambiar forma -->
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografía Editable</title>
+    <style id="editableStyles">
+        
+    </style>
+</head>
+<body>
+
+    <div class="container" id="infografiaContainer">
+        <h1 id="tituloInfografia" contenteditable="true">Los Gatos: Un Mundo de Misterios y Compañía</h1>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Historia de los Gatos</h2>
+                <p contenteditable="true">Los gatos han sido compañeros de los humanos desde la antigüedad, siendo venerados en varias culturas.</p>
+                <p contenteditable="true">Su relación con las personas ha evolucionado a lo largo de los siglos.</p>
+            </div>
+            <div class="image" id="imagen0">
+                <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=300&auto=format&fit=crop&q=60" alt="Gato en la Historia">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Tipos de Gatos</h2>
+                <p contenteditable="true">Existen numerosas razas de gatos, cada una con sus características y personalidades únicas.</p>
+                <p contenteditable="true">Desde los majestuosos Maine Coon hasta los elegantes Siamés, cada gato es especial.</p>
+            </div>
+            <div class="image" id="imagen1">
+                <img src="https://plus.unsplash.com/premium_photo-1677545182067-26ac518ef64f?w=300&auto=format&fit=crop&q=60" alt="Tipos de Gatos">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Comportamiento y Personalidad</h2>
+                <p contenteditable="true">Los gatos son conocidos por su independencia, pero también pueden ser cariñosos y leales.</p>
+                <p contenteditable="true">Entender su comportamiento es clave para fortalecer la relación con ellos.</p>
+            </div>
+            <div class="image" id="imagen2">
+                <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300&auto=format&fit=crop&q=60" alt="Gato Comportamiento">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Cuidado y Alimentación</h2>
+                <p contenteditable="true">Proporcionar una alimentación adecuada y atención veterinaria es esencial para su salud.</p>
+                <p contenteditable="true">Los gatos requieren cuidados específicos para mantenerlos felices y saludables.</p>
+            </div>
+            <div class="image" id="imagen3">
+                <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=300&auto=format&fit=crop&q=60" alt="Cuidado y Alimentación de Gatos">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Juego y Estimulación</h2>
+                <p contenteditable="true">Los gatos necesitan jugar para mantener su mente activa y su cuerpo saludable.</p>
+                <p contenteditable="true">Los juguetes y actividades interactivas son esenciales para su bienestar.</p>
+            </div>
+            <div class="image" id="imagen4">
+                <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?w=200&auto=format&fit=crop&q=60" alt="Juego y Estimulación de Gatos">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Salud y Bienestar</h2>
+                <p contenteditable="true">La salud de los gatos incluye revisiones regulares y atención a sus necesidades emocionales.</p>
+                <p contenteditable="true">Un entorno seguro y enriquecido es vital para su bienestar general.</p>
+            </div>
+            <div class="image" id="imagen5">
+                <img src="https://images.unsplash.com/photo-1526509429168-2e43f01f6b81?w=200&auto=format&fit=crop&q=60" alt="Salud y Bienestar de Gatos">
+            </div>
+        </div>
+    
+        <div class="section" contenteditable="true">
+            <div class="text">
+                <h2 class="subtitulo" contenteditable="true">Gatos en la Cultura Popular</h2>
+                <p contenteditable="true">Los gatos han sido una fuente de inspiración en el arte, la literatura y el cine.</p>
+                <p contenteditable="true">Desde el famoso gato de Cheshire hasta los memes de internet, su influencia es innegable.</p>
+            </div>
+            <div class="image" id="imagen6">
+                <img src="https://images.unsplash.com/photo-1582725461742-8ecd962c260d?w=200&auto=format&fit=crop&q=60" alt="Gatos en la Cultura Popular">
+            </div>
+        </div>
+    
+        <div class="footer">
+            <p contenteditable="true"><strong>Los Gatos: Compañeros que llenan nuestras vidas de amor y misterio.</strong></p>
+        </div>
+</div>
+
+<div class="image-selector">
+    <h2>Agregar Imagen a las Secciones</h2>
+    
+    <label for="imageInput0">Seleccionar imagen para "Historia de los Gatos":</label>
+    <input type="file" id="imageInput0" accept="image/*" onchange="mostrarImagen(0)">
+    <input type="text" id="imageUrl0" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=300&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(0)">Aceptar</button>
+    <br><br>
+    <img id="imagen0" alt="Imagen Historia de los Gatos" style="display:none;">
+    
+    <label for="imageInput1">Seleccionar imagen para "Tipos de Gatos":</label>
+    <input type="file" id="imageInput1" accept="image/*" onchange="mostrarImagen(1)">
+    <input type="text" id="imageUrl1" placeholder="o pega la URL aquí" value="https://plus.unsplash.com/premium_photo-1677545182067-26ac518ef64f?w=300&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(1)">Aceptar</button>
+    <br><br>
+    <img id="imagen1" alt="Imagen Tipos de Gatos" style="display:none;">
+    
+    <label for="imageInput2">Seleccionar imagen para "Comportamiento y Personalidad":</label>
+    <input type="file" id="imageInput2" accept="image/*" onchange="mostrarImagen(2)">
+    <input type="text" id="imageUrl2" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(2)">Aceptar</button>
+    <br><br>
+    <img id="imagen2" alt="Imagen Comportamiento y Personalidad" style="display:none;">
+    
+    <label for="imageInput3">Seleccionar imagen para "Cuidado y Alimentación":</label>
+    <input type="file" id="imageInput3" accept="image/*" onchange="mostrarImagen(3)">
+    <input type="text" id="imageUrl3" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=300&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(3)">Aceptar</button>
+    <br><br>
+    <img id="imagen3" alt="Imagen Cuidado y Alimentación" style="display:none;">
+    
+    <label for="imageInput4">Seleccionar imagen para "Juego y Estimulación":</label>
+    <input type="file" id="imageInput4" accept="image/*" onchange="mostrarImagen(4)">
+    <input type="text" id="imageUrl4" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?w=200&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(4)">Aceptar</button>
+    <br><br>
+    <img id="imagen4" alt="Imagen Juego y Estimulación" style="display:none;">
+    
+    <label for="imageInput5">Seleccionar imagen para "Salud y Bienestar":</label>
+    <input type="file" id="imageInput5" accept="image/*" onchange="mostrarImagen(5)">
+    <input type="text" id="imageUrl5" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1526509429168-2e43f01f6b81?w=200&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(5)">Aceptar</button>
+    <br><br>
+    <img id="imagen5" alt="Imagen Salud y Bienestar" style="display:none;">
+    
+    <label for="imageInput6">Seleccionar imagen para "Gatos en la Cultura Popular":</label>
+    <input type="file" id="imageInput6" accept="image/*" onchange="mostrarImagen(6)">
+    <input type="text" id="imageUrl6" placeholder="o pega la URL aquí" value="https://images.unsplash.com/photo-1582725461742-8ecd962c260d?w=200&auto=format&fit=crop&q=60">
+    <button onclick="cargarImagenDesdeUrl(6)">Aceptar</button>
+    <br><br>
+    <img id="imagen6" alt="Imagen Gatos en la Cultura Popular" style="display:none;">
+</div>
+
+
+<style>
+     .editor {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 30px;
+        border: 6px solid #9a72e4e3;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fcf9f9;
+    }
+
+    h3 {
+        text-align: center;
+        color: #333;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: vertical;
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 14px;
+    }
+
+    button {
+        margin: 10px 5px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background-color: #14bd60;
+        color: white;
+        font-size: 16px;
+        cursor: pointer;
+        transition: transform 0.2s, background-color 0.3s;
+    }
+
+    button:hover {
+        background-color: #45a049;
+        transform: scale(1.05); /* Scale up on hover */
+    }
+
+    button:active {
+        transform: scale(0.95);
+    }
+</style>
+
+<div class="editor">
+    
+   
+    <h3>Editar HTML</h3>
+    <textarea id="editor" rows="20"></textarea>
+    <button onclick="applyChanges()">Aplicar Cambios</button>
+    <button onclick="copyCode()">Copiar Código</button>
+    <button onclick="selectAll()">Seleccionar Todo</button>
+    <button onclick="pasteCode()">Pegar</button>
+    
+
+    <button onclick="clearCode()">Borrar Código</button> <!-- New button to clear code -->
+    <button onclick="resetCode()">Reiniciar Código</button> <!-- Button to reset code -->
+</div>
+
+<script>
+    const defaultCode = `
+<div class="container" id="infografiaContainer">
+    <h1 id="tituloInfografia" contenteditable="true">Los Gatos: Un Mundo de Misterios y Compañía</h1>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Historia de los Gatos</h2>
+            <p contenteditable="true">Los gatos han sido compañeros de los humanos desde la antigüedad, siendo venerados en varias culturas.</p>
+            <p contenteditable="true">Su relación con las personas ha evolucionado a lo largo de los siglos.</p>
+        </div>
+        <div class="image" id="imagen0">
+            <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=300&auto=format&fit=crop&q=60" alt="Gato en la Historia">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Tipos de Gatos</h2>
+            <p contenteditable="true">Existen numerosas razas de gatos, cada una con sus características y personalidades únicas.</p>
+            <p contenteditable="true">Desde los majestuosos Maine Coon hasta los elegantes Siamés, cada gato es especial.</p>
+        </div>
+        <div class="image" id="imagen1">
+            <img src="https://plus.unsplash.com/premium_photo-1677545182067-26ac518ef64f?w=300&auto=format&fit=crop&q=60" alt="Tipos de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Comportamiento y Personalidad</h2>
+            <p contenteditable="true">Los gatos son conocidos por su independencia, pero también pueden ser cariñosos y leales.</p>
+            <p contenteditable="true">Entender su comportamiento es clave para fortalecer la relación con ellos.</p>
+        </div>
+        <div class="image" id="imagen2">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300&auto=format&fit=crop&q=60" alt="Gato Comportamiento">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Cuidado y Alimentación</h2>
+            <p contenteditable="true">Proporcionar una alimentación adecuada y atención veterinaria es esencial para su salud.</p>
+            <p contenteditable="true">Los gatos requieren cuidados específicos para mantenerlos felices y saludables.</p>
+        </div>
+        <div class="image" id="imagen3">
+            <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=300&auto=format&fit=crop&q=60" alt="Cuidado y Alimentación de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Juego y Estimulación</h2>
+            <p contenteditable="true">Los gatos necesitan jugar para mantener su mente activa y su cuerpo saludable.</p>
+            <p contenteditable="true">Los juguetes y actividades interactivas son esenciales para su bienestar.</p>
+        </div>
+        <div class="image" id="imagen4">
+            <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?w=200&auto=format&fit=crop&q=60" alt="Juego y Estimulación de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Salud y Bienestar</h2>
+            <p contenteditable="true">La salud de los gatos incluye revisiones regulares y atención a sus necesidades emocionales.</p>
+            <p contenteditable="true">Un entorno seguro y enriquecido es vital para su bienestar general.</p>
+        </div>
+        <div class="image" id="imagen5">
+            <img src="https://images.unsplash.com/photo-1526509429168-2e43f01f6b81?w=200&auto=format&fit=crop&q=60" alt="Salud y Bienestar de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Gatos en la Cultura Popular</h2>
+            <p contenteditable="true">Los gatos han sido una fuente de inspiración en el arte, la literatura y el cine.</p>
+            <p contenteditable="true">Desde el famoso gato de Cheshire hasta los memes de internet, su influencia es innegable.</p>
+        </div>
+        <div class="image" id="imagen6">
+            <img src="https://images.unsplash.com/photo-1582725461742-8ecd962c260d?w=200&auto=format&fit=crop&q=60" alt="Gatos en la Cultura Popular">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p contenteditable="true"><strong>Los Gatos: Compañeros que llenan nuestras vidas de amor y misterio.</strong></p>
+    </div>
+</div>        
+    `;
+     // Función para aplicar solo el HTML editado
+    function applyChanges() {
+        const content = document.getElementById('editor').value;
+        const htmlContent = content.trim();
+        document.getElementById('infografiaContainer').outerHTML = htmlContent;
+    }
+
+    // Función para copiar el código HTML al portapapeles
+    function copyCode() {
+        const content = document.getElementById('editor').value;
+        navigator.clipboard.writeText(content).then(() => {
+            alert('Código copiado al portapapeles!');
+        }).catch(err => {
+            console.error('Error al copiar el código: ', err);
+        });
+    }
+
+    // Función para seleccionar todo el texto en el editor
+    function selectAll() {
+        const editor = document.getElementById('editor');
+        editor.select();
+        editor.setSelectionRange(0, 99999); // Para dispositivos móviles
+    }
+
+    // Función para pegar el código del portapapeles en el editor
+    function pasteCode() {
+        navigator.clipboard.readText().then(text => {
+            const editor = document.getElementById('editor');
+            editor.value += text; // Pegar al final del contenido actual
+        }).catch(err => {
+            console.error('Error al pegar el código: ', err);
+        });
+    }
+
+    // Nueva función para borrar el contenido del editor
+    function clearCode() {
+        document.getElementById('editor').value = ''; // Limpiar el contenido del editor
+    }
+
+    // Nueva función para reiniciar el contenido del editor al código por defecto
+    function resetCode() {
+        document.getElementById('editor').value = defaultCode; // Restablecer el contenido al valor por defecto
+    }
+
+    // Inicializar el editor con el contenido actual del HTML
+    document.getElementById('editor').value = `
+<div class="container" id="infografiaContainer">
+    <h1 id="tituloInfografia" contenteditable="true">Los Gatos: Un Mundo de Misterios y Compañía</h1>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Historia de los Gatos</h2>
+            <p contenteditable="true">Los gatos han sido compañeros de los humanos desde la antigüedad, siendo venerados en varias culturas.</p>
+            <p contenteditable="true">Su relación con las personas ha evolucionado a lo largo de los siglos.</p>
+        </div>
+        <div class="image" id="imagen0">
+            <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?w=300&auto=format&fit=crop&q=60" alt="Gato en la Historia">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Tipos de Gatos</h2>
+            <p contenteditable="true">Existen numerosas razas de gatos, cada una con sus características y personalidades únicas.</p>
+            <p contenteditable="true">Desde los majestuosos Maine Coon hasta los elegantes Siamés, cada gato es especial.</p>
+        </div>
+        <div class="image" id="imagen1">
+            <img src="https://plus.unsplash.com/premium_photo-1677545182067-26ac518ef64f?w=300&auto=format&fit=crop&q=60" alt="Tipos de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Comportamiento y Personalidad</h2>
+            <p contenteditable="true">Los gatos son conocidos por su independencia, pero también pueden ser cariñosos y leales.</p>
+            <p contenteditable="true">Entender su comportamiento es clave para fortalecer la relación con ellos.</p>
+        </div>
+        <div class="image" id="imagen2">
+            <img src="https://images.unsplash.com/photo-1518791841217-8f162f1e1131?w=300&auto=format&fit=crop&q=60" alt="Gato Comportamiento">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Cuidado y Alimentación</h2>
+            <p contenteditable="true">Proporcionar una alimentación adecuada y atención veterinaria es esencial para su salud.</p>
+            <p contenteditable="true">Los gatos requieren cuidados específicos para mantenerlos felices y saludables.</p>
+        </div>
+        <div class="image" id="imagen3">
+            <img src="https://images.unsplash.com/photo-1548802673-380ab8ebc7b7?w=300&auto=format&fit=crop&q=60" alt="Cuidado y Alimentación de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Juego y Estimulación</h2>
+            <p contenteditable="true">Los gatos necesitan jugar para mantener su mente activa y su cuerpo saludable.</p>
+            <p contenteditable="true">Los juguetes y actividades interactivas son esenciales para su bienestar.</p>
+        </div>
+        <div class="image" id="imagen4">
+            <img src="https://images.unsplash.com/photo-1577023311546-cdc07a8454d9?w=200&auto=format&fit=crop&q=60" alt="Juego y Estimulación de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Salud y Bienestar</h2>
+            <p contenteditable="true">La salud de los gatos incluye revisiones regulares y atención a sus necesidades emocionales.</p>
+            <p contenteditable="true">Un entorno seguro y enriquecido es vital para su bienestar general.</p>
+        </div>
+        <div class="image" id="imagen5">
+            <img src="https://images.unsplash.com/photo-1526509429168-2e43f01f6b81?w=200&auto=format&fit=crop&q=60" alt="Salud y Bienestar de Gatos">
+        </div>
+    </div>
+
+    <div class="section" contenteditable="true">
+        <div class="text">
+            <h2 class="subtitulo" contenteditable="true">Gatos en la Cultura Popular</h2>
+            <p contenteditable="true">Los gatos han sido una fuente de inspiración en el arte, la literatura y el cine.</p>
+            <p contenteditable="true">Desde el famoso gato de Cheshire hasta los memes de internet, su influencia es innegable.</p>
+        </div>
+        <div class="image" id="imagen6">
+            <img src="https://images.unsplash.com/photo-1582725461742-8ecd962c260d?w=200&auto=format&fit=crop&q=60" alt="Gatos en la Cultura Popular">
+        </div>
+    </div>
+
+    <div class="footer">
+        <p contenteditable="true"><strong>Los Gatos: Compañeros que llenan nuestras vidas de amor y misterio.</strong></p>
+    </div>
+</div>        
+    `;
+</script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div class="buttons">
+        <button class="verde-agua" onclick="descargarInfografia('4k')">Descargar en 4K</button>
+        <button class="rojo-agua" onclick="descargarInfografia('1080p')">Descargar en 1080p</button>
+       
+    </div>
+
+    <div id="mensajeGuardado" class="mensaje">
+        ¡Infografía descargada correctamente!
+    </div>
+
+    
+        <script>
+            let formaCircular = true; // Variable para controlar la forma
+
+function cambiarFormaImagen() {
+    const imagenes = document.querySelectorAll('.image img');
+    formaCircular = !formaCircular; // Alternar la forma
+    const borderRadius = formaCircular ? '50%' : '20%'; // Cambiar el radio del borde
+
+    imagenes.forEach(imagen => {
+        imagen.style.borderRadius = borderRadius; // Aplicar el nuevo radio del borde
+    });
+}
+
+            function mostrarImagen(id) {
+                const input = document.getElementById('imageInput' + id);
+                const imageContainer = document.getElementById('imagen' + id);
+                const reader = new FileReader();
+                
+                reader.onload = function(event) {
+                    imageContainer.innerHTML = '<img src="' + event.target.result + '" alt="Imagen de sección">';
+                };
+                
+                if (input.files[0]) {
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+    
+            function cambiarColores(marcoColor, sombraColor) {
+                document.querySelector('.container').style.borderColor = marcoColor;
+                document.querySelector('.footer').style.backgroundColor = sombraColor;
+            }
+    
+            function cambiarColorTitulo() {
+                const colorTitulo = document.getElementById('colorPicker').value;
+                document.getElementById('tituloInfografia').style.color = colorTitulo;
+            }
+    
+            function cambiarFondoContenedor() {
+                const colorFondo = document.getElementById('bgColorPicker').value;
+                document.querySelector('.container').style.backgroundColor = colorFondo;
+            }
+    
+            function descargarInfografia(resolucion) {
+                const scaleFactor = resolucion === '4k' ? 4 : 2;
+                const container = document.getElementById('infografiaContainer');
+    
+                html2canvas(container, { scale: scaleFactor }).then(canvas => {
+                    const link = document.createElement('a');
+                    link.download = 'infografia_' + resolucion + '.png';
+                    link.href = canvas.toDataURL();
+                    link.click();
+    
+                    document.getElementById('mensajeGuardado').style.display = 'block';
+                    setTimeout(() => document.getElementById('mensajeGuardado').style.display = 'none', 3000);
+                });
+            }
+            
+            function cambiarColorSubtitulos() {
+    let nuevoColor = document.getElementById('subtituloColorPicker').value;
+    let subtitulos = document.querySelectorAll('.subtitulo');
+    subtitulos.forEach(function (subtitulo) {
+        subtitulo.style.color = nuevoColor;
+    });
+}
+
+        </script>
+    
+    </body>
+    </html>
+
+
+
+
+
+
+
+
+
+           
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
